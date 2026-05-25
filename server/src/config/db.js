@@ -1,7 +1,15 @@
 import mongoose from "mongoose";
 
 export const connectDB = async () => {
-  const mongoUri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/taskflow-ai";
+  const mongoUri = process.env.MONGO_URI;
+
+  if (!mongoUri) {
+    console.warn(
+      "Warning: MONGO_URI is not set. Skipping MongoDB connection. " +
+      "Database-dependent features will be unavailable."
+    );
+    return;
+  }
 
   mongoose.set("strictQuery", true);
 

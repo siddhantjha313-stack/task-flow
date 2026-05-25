@@ -8,18 +8,21 @@ const port = process.env.PORT || 5000;
 const startServer = async () => {
   try {
     await connectDB();
+  } catch (error) {
+    console.error("MongoDB connection error — continuing without database:", error.message);
+  }
 
+  try {
     if (process.env.DEMO_SEED === "true") {
       await seedDemoData({ reset: false });
     }
-
-    app.listen(port, () => {
-      console.log(`TaskFlow AI API running on port ${port}`);
-    });
   } catch (error) {
-    console.error("Failed to start server", error);
-    process.exit(1);
+    console.error("Demo seed failed — continuing without seed data:", error.message);
   }
+
+  app.listen(port, () => {
+    console.log(`TaskFlow AI API running on port ${port}`);
+  });
 };
 
 startServer();
