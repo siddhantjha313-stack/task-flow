@@ -20,8 +20,9 @@ const startServer = async () => {
     console.error("Demo seed failed — continuing without seed data:", error.message);
   }
 
-  app.listen(port, () => {
+  app.listen(port, "0.0.0.0", () => {
     console.log(`TaskFlow AI API running on port ${port}`);
+    console.log(`Server accessible on all interfaces (0.0.0.0:${port})`);
   });
 };
 
