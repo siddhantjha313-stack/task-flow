@@ -1,0 +1,26 @@
+{
+  "name": "taskflow-server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "TaskFlow AI Backend",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "seed": "node src/scripts/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.1.2",
+    "mongoose": "^8.0.3",
+    "morgan": "^1.10.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
+
