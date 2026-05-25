@@ -1,0 +1,49 @@
+# Architecture
+
+TaskFlow AI is organized as an npm workspace monorepo.
+
+```text
+taskflow-ai/
+  client/  React + Vite + Tailwind + Framer Motion
+  server/  Express + Mongoose + JWT + MVC routes
+  docs/    Git, deployment, and API references
+```
+
+## Frontend
+
+- Vite React single-page app
+- Protected routes with `AuthContext`
+- Theme persistence with `ThemeContext`
+- shadcn-style local primitives in `client/src/components/ui`
+- REST service layer in `client/src/services/api.js`
+- Animated app shell, dashboard, projects, tasks table, Kanban, calendar, team, and settings pages
+
+## Backend
+
+- Express app in `server/src/app.js`
+- MongoDB connection in `server/src/config/db.js`
+- Mongoose models:
+  - `User`
+  - `Project`
+  - `Task`
+  - `ActivityLog`
+- Controllers separated by domain
+- Middleware for JWT auth, RBAC, validation, and error handling
+- Zod validation schemas in `server/src/validators/schemas.js`
+
+## Production Flow
+
+1. Railway installs root workspace dependencies.
+2. Railway runs `npm run build`, which builds `client/dist`.
+3. Railway starts `npm start`, which runs the Express API.
+4. Express serves `/api/*` routes and the built React app for all other routes.
+
+## Demo Seed
+
+Run:
+
+```bash
+npm run seed
+```
+
+This creates demo users, projects, tasks, comments-ready task structures, and activity logs.
